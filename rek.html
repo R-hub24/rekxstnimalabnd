@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستەمی تۆمارکردنی مەڵبەندی ١ی سلێمانی - بەشی گەنجان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #1b4332;
+            --secondary-green: #2d6a4f;
+            --accent-green: #40916c;
+            --light-green: #d8f3dc;
+            --bg-color: #f4f9f4;
+            --white: #ffffff;
+            --text-dark: #212529;
+            --border-color: #ced4da;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ey-logo {
+            width: 70px;
+            height: 70px;
+            background: var(--white);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 3px solid var(--accent-green);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            color: var(--light-green);
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: #fafafa;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
+        }
+
+        #teamMembersBox {
+            background: var(--light-green);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #b7e4c7;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .team-input {
+            margin-bottom: 0.8rem;
+        }
+
+        .submit-btn {
+            background: var(--secondary-green);
+            color: var(--white);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-green);
+        }
+
+        /* بەشی بەڕێوەبەر */
+        #adminSection {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .admin-btn-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .admin-login-btn {
+            background: transparent;
+            color: #6c757d;
+            border: 1px dashed #ced4da;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .admin-login-btn:hover {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: var(--white);
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="ey-logo">EY</div>
+        <h1>سیستەمی تۆمارکردنی بەشی گەنجانی مەڵبەندی ١ی سلێمانی</h1>
+    </header>
+
+    <div class="container">
+        <!-- فۆرمی تۆمارکردن -->
+        <div class="card" id="formCard">
+            <div class="card-header">
+                <h2>فۆرمی بوون بە ئەندام</h2>
+            </div>
+            <div class="card-body">
+                <form id="regForm" onsubmit="submitData(event)">
+                    <div class="form-group">
+                        <label>ناوی تەواو (سیانی):</label>
+                        <input type="text" id="fullName" required placeholder="ناوی سیانی بنووسە" oninput="validateKurdish(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ژمارەی مۆبایل:</label>
+                        <input type="tel" id="phone" required placeholder="0750XXXXXXX" oninput="validateEnglishNumbers(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>شار:</label>
+                        <select id="city" required>
+                            <option value="">شار هەڵبژێرە</option>
+                            <option value="سلێمانی">سلێمانی</option>
+                            <option value="شارباژێر">شارباژێر</option>
+                            <option value="چەمچەماڵ">چەمچەماڵ</option>
+                            <option value="دەربەندیخان">دەربەندیخان</option>
+                            <option value="کەلار">کەلار</option>
+                            <option value="ڕانیە">ڕانیە</option>
+                            <option value="قەڵادزێ">قەڵادزێ</option>
+                            <option value="شارەزوور">شارەزوور</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ناوی کۆمیتە:</label>
+                        <input type="text" id="committee" required placeholder="ناوی کۆمیتە بنووسە" oninput="validateKurdish(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ژمارەی کارتی دەنگدان:</label>
+                        <input type="text" id="voterCard" required placeholder="ژمارەی کارتی دەنگدان" oninput="validateEnglishNumbers(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>بنکەی دەنگدان:</label>
+                        <input type="text" id="voterStation" required placeholder="ناوی بنکەی دەنگدان" oninput="validateKurdish(this)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>جۆری ئەندامێتی:</label>
+                        <select id="membershipType" onchange="checkMembershipType()" required>
+                            <option value="ئەندام">ئەندام</option>
+                            <option value="ئەندامی چالاک">ئەندامی چالاک</option>
+                            <option value="ئەندامی پشتیوانی">ئەندامی پشتیوانی</option>
+                            <option value="بەرپرسی تیم">بەرپرسی تیم</option>
+                        </select>
+                    </div>
+
+                    <div id="teamMembersBox">
+                        <label style="color: var(--primary-green); margin-bottom: 10px; display: block; font-weight: 700;">ناوی تەواوی هەر ١٠ ئەندامی تیمەکەت بنووسە:</label>
+                        <div id="tenInputsContainer"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">ناردنی زانیارییەکان</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- بەشی بەڕێوەبەری پارێزراو بە کۆد -->
+        <div id="adminSection" class="card">
+            <div class="card-header" style="background: #212529;">
+                <h2>بەشی بەڕێوەبەر (تایبەت بە ئەندامانی دەستەی بەڕێوەبردن)</h2>
+            </div>
+            <div class="card-body" style="overflow-x: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                    <button onclick="hideAdmin()" style="padding: 6px 15px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">داخستنی بەشی بەڕێوەبەر</button>
+                    <div id="loginCountDisplay" style="background: var(--light-green); color: var(--primary-green); padding: 5px 12px; border-radius: 6px; font-weight: bold; font-size: 0.9rem;"></div>
+                </div>
+                <div id="adminTableContent">بارکردنی داتاکان...</div>
+            </div>
+        </div>
+
+        <!-- دوگمەی کردنەوەی بەشی بەڕێوەبەر -->
+        <div class="admin-btn-container">
+            <button class="admin-login-btn" onclick="checkAdminPassword()"><i class="fa-solid fa-lock"></i> چوونەژوورەوەی بەڕێوەبەر</button>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyC5sOi40DpA-gm819ruwjKinRz75MzmYkfqAk0BrXuakC4DUy410yBjqTrf6_BgCAiEw/exec';
+        const adminCode = "1234"; // دەتوانیت ئەم کۆدە بگۆڕیت بۆ هەر ژمارەیەک کە دەتەوێت
+
+        const tenContainer = document.getElementById('tenInputsContainer');
+        for (let i = 1; i <= 10; i++) {
+            let div = document.createElement('div');
+            div.className = 'team-input';
+            div.innerHTML = `<input type="text" class="team-member-input" placeholder="ناوی ئەندامی ژمارە ${i}" oninput="validateKurdish(this)">`;
+            tenContainer.appendChild(div);
+        }
+
+        function validateKurdish(input) {
+            input.value = input.value.replace(/[a-zA-Z]/g, '');
+        }
+
+        function validateEnglishNumbers(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+        function checkMembershipType() {
+            const type = document.getElementById('membershipType').value;
+            const box = document.getElementById('teamMembersBox');
+            const teamInputs = document.querySelectorAll('.team-member-input');
+
+            if (type === 'بەرپرسی تیم') {
+                box.style.display = 'block';
+                teamInputs.forEach(input => input.setAttribute('required', 'true'));
+            } else {
+                box.style.display = 'none';
+                teamInputs.forEach(input => input.removeAttribute('required'));
+            }
+        }
+
+        async function submitData(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "چاوەڕوان بە ناردن...";
+
+            let teamMembersStr = "نییە";
+            if (document.getElementById('membershipType').value === 'بەرپرسی تیم') {
+                const members = [];
+                document.querySelectorAll('.team-member-input').forEach((input, index) => {
+                    if(input.value) members.push(`ئەندام ${index+1}: ${input.value}`);
+                });
+                teamMembersStr = members.join(" - ");
+            }
+
+            const formData = {
+                timestamp: new Date().toLocaleString('ku-IQ'),
+                fullName: document.getElementById('fullName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                city: document.getElementById('city').value,
+                committee: document.getElementById('committee').value,
+                voterCard: document.getElementById('voterCard').value,
+                voterStation: document.getElementById('voterStation').value,
+                membershipType: document.getElementById('membershipType').value,
+                teamMembers: teamMembersStr
+            };
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                submitBtn.innerText = "پیرۆزە بویت بە ئەندام";
+                setTimeout(() => {
+                    document.getElementById('regForm').reset();
+                    document.getElementById('teamMembersBox').style.display = 'none';
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "ناردنی زانیارییەکان";
+                }, 2500);
+
+            } catch (error) {
+                alert("هەڵەیەک ڕویدا، تکایە ئینترنتەکەت بپشکنە!");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "ناردنی زانیارییەکان";
+            }
+        }
+
+        // سیستەمی چوونەژوورەوەی بەڕێوەبەر بە پاسۆرد و ئەژمێرکاری چوونەژوورەوە
+        function checkAdminPassword() {
+            let pass = prompt("تکایە کۆدی چوونەژوورەوەی بەڕێوەبەر بنووسە:");
+            if (pass === adminCode) {
+                // زیادکردنی ژمارەی چوونەژوورەوەکان
+                let visits = localStorage.getItem('adminLoginCount') || 0;
+                visits = parseInt(visits) + 1;
+                localStorage.setItem('adminLoginCount', visits);
+
+                // پیشاندانی بەشی بەڕێوەبەر
+                document.getElementById('adminSection').style.display = 'block';
+                
+                // نیشاندانی ژمارەکە تەنها کاتێک کەسەکە بە سەرکەوتوویی دەچێتە ژوورەوە
+                document.getElementById('loginCountDisplay').innerHTML = `📊 ژمارەی جارەکانی چوونەژوورەوە: <span style="color: #d90429; font-size: 1.1rem;">${visits}</span> جار`;
+
+                fetchAdminData();
+            } else if (pass !== null) {
+                alert("کۆدەکە هەڵەیە!");
+            }
+        }
+
+        function hideAdmin() {
+            document.getElementById('adminSection').style.display = 'none';
+        }
+
+        function fetchAdminData() {
+            const contentDiv = document.getElementById('adminTableContent');
+            contentDiv.innerHTML = "خەریکی بارکردنی داتاکانە...";
+
+            fetch(scriptURL)
+            .then(res => res.json())
+            .then(data => {
+                if (data.length === 0) {
+                    contentDiv.innerHTML = "<p>هیچ تۆمارێک نییە.</p>";
+                    return;
+                }
+
+                let html = `<table>
+                    <thead>
+                        <tr>
+                            <th>کات</th>
+                            <th>ناوی تەواو</th>
+                            <th>مۆبایل</th>
+                            <th>شار</th>
+                            <th>کۆمیتە</th>
+                            <th>کارتی دەنگدان</th>
+                            <th>بنکە</th>
+                            <th>جۆر</th>
+                            <th>ئەندامانی تیم</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+                data.forEach(row => {
+                    html += `<tr>
+                        <td>${row.timestamp || ''}</td>
+                        <td>${row.fullName || ''}</td>
+                        <td>${row.phone || ''}</td>
+                        <td>${row.city || ''}</td>
+                        <td>${row.committee || ''}</td>
+                        <td>${row.voterCard || ''}</td>
+                        <td>${row.voterStation || ''}</td>
+                        <td>${row.membershipType || ''}</td>
+                        <td>${row.teamMembers || ''}</td>
+                    </tr>`;
+                });
+
+                html += `</tbody></table>`;
+                contentDiv.innerHTML = html;
+            })
+            .catch(err => {
+                contentDiv.innerHTML = "<p style='color:red;'>کێشە لە هێنانی داتاکان ڕویدا.</p>";
+                console.error(err);
+            });
+        }
+    </script>
+</body>
+</html>
